@@ -6,7 +6,7 @@ namespace Evolution
         Colour colour = new Colour();
 
 
-        public PreparingData(List<string> countriesList)
+        public async Task PD(List<string> countriesList)
         {
             List<string> folderList = new List<string>()
             {
@@ -50,13 +50,13 @@ namespace Evolution
                 }
             }
 
-            DownloadAndFilteredData(countriesList);
+            await DownloadAndFilteredData(countriesList);
             colour.WriteLine("g","----DANE PRZYGOTOWANE----");
         }
 
 
 
-        public async void DownloadAndFilteredData(List<string> countriesList)
+        public async Task DownloadAndFilteredData(List<string> countriesList)
         {
             await data.DownloadCountriesByCL(countriesList);
             await data.DownloadRegionsByCL(countriesList);

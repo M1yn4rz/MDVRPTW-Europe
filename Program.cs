@@ -22,12 +22,13 @@ namespace Evolution
 {
     class Program
     {
-        static int Main(string[] args)
+        static async Task Main(string[] args)
         {   
             Data data = new Data();
             Colour colour = new Colour();
             List<string> points = new List<string>();
             Random random = new Random();
+            PreparingData pData = new PreparingData();
             
 
             List<string> countriesList = new List<string>() {
@@ -44,7 +45,7 @@ namespace Evolution
             };
 
             // Odkomentować, w przypadku pobrania potrzebnych map
-            //PreparingData pData = new PreparingData(countriesList);
+            //await pData.PD(countriesList);
             
             // ---------- Przykładowe dane do uruchomienia algorytmu ---------
 
@@ -74,7 +75,7 @@ namespace Evolution
             if (mutationSwapFreq + mutationScrambleFreq + crossoverSwapFreq + crossoverLinearOrderFreq != 1)
             {
                 colour.WriteLine("r","ERROR - The value of the sum of frequencies must be equal to 1");
-                return 0;
+                return;
             }
 
             Algorithm algorithm = new Algorithm(countriesList, "Test3kP10C", numberPopulation, numberEpochs, percentLeft, 
@@ -83,7 +84,7 @@ namespace Evolution
                 packagesPerDriver, 
                 showWarehousesMap, showSortOfficesMap, mode, warehousesMaxHours, sortOfficesMaxHours);
             
-            return 0;
+            return;
         }   
     }
 }
