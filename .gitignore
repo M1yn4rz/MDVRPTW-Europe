@@ -1,0 +1,27 @@
+
+
+# Pomijanie plików tymczasowych
+*.tmp
+*.log
+
+# Pliki tymczasowe Visual Studio
+*.user
+*.suo
+*.tmp
+*.log
+
+# Pomijanie folderów
+/bin/
+/obj/
+/build/
+/data/notatki/
+/data/osm/
+/data/outputs/
+/data/outputs - format excel/
+/tests/
+
+# Pomijanie plików konfiguracyjnych
+secrets.json
+
+# Ignorowanie aplikacji (jeśli nie powinna być w repozytorium)
+osmosconvert64-0.8.8p
