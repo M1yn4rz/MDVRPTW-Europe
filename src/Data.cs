@@ -341,7 +341,7 @@ namespace Evolution
         }
 
 
-        public async void DownloadCountriesByCL(List<string> countriesList)
+        public async Task DownloadCountriesByCL(List<string> countriesList)
         {
             string urlPath = "";
 
@@ -375,7 +375,7 @@ namespace Evolution
         }
 
 
-        public void DownloadRegionsByCL(List<string> countriesList)
+        public async Task DownloadRegionsByCL(List<string> countriesList)
         {
             string urlPath = "";
 
@@ -388,7 +388,7 @@ namespace Evolution
 
                     foreach (var region in regions[country])
                     {
-                        _ = DownloadFile(urlPath + country + "/", region, "data/osm/pbf/regions/" + country + "/");
+                        await DownloadFile(urlPath + country + "/", region, "data/osm/pbf/regions/" + country + "/");
                     }
                 }
             }

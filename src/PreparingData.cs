@@ -3,6 +3,7 @@ namespace Evolution
     class PreparingData
     {
         Data data = new Data();
+        Colour colour = new Colour();
 
 
         public PreparingData(List<string> countriesList)
@@ -49,8 +50,16 @@ namespace Evolution
                 }
             }
 
-            data.DownloadCountriesByCL(countriesList);
-            data.DownloadRegionsByCL(countriesList);
+            DownloadAndFilteredData(countriesList);
+            colour.WriteLine("g","----DANE PRZYGOTOWANE----");
+        }
+
+
+
+        public async void DownloadAndFilteredData(List<string> countriesList)
+        {
+            await data.DownloadCountriesByCL(countriesList);
+            await data.DownloadRegionsByCL(countriesList);
 
             data.FilteringCountriesPrimaryByCL(countriesList);
             data.FilteringCountriesSecondaryByCL(countriesList);
