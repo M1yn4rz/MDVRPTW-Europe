@@ -34,9 +34,9 @@ namespace Evolution
 
             foreach (var country in countriesList)
             {
-                if (!Directory.Exists($"outputs/{country}"))
+                if (!Directory.Exists($"data/outputs/{country}"))
                 {
-                    Directory.CreateDirectory($"outputs/{country}");
+                    Directory.CreateDirectory($"data/outputs/{country}");
                 }
 
                 if (data.regions.Keys.Contains(country) && !Directory.Exists($"data/pbf/countries/{country}"))
