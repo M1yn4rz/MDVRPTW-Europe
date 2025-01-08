@@ -341,7 +341,7 @@ namespace Evolution
         }
 
 
-        public async void DownloadCountriesByCL(string countriesList)
+        public async void DownloadCountriesByCL(List<string> countriesList)
         {
             string urlPath = "";
 
@@ -358,7 +358,7 @@ namespace Evolution
         }
 
 
-        public void DownloadRegions()
+        public void DownloadRegions(List<string> countriesList)
         {
             string urlPath = "";
 
@@ -375,7 +375,7 @@ namespace Evolution
         }
 
 
-        public void DownloadRegionsByCL(string countriesList)
+        public void DownloadRegionsByCL(List<string> countriesList)
         {
             string urlPath = "";
 
@@ -492,6 +492,77 @@ namespace Evolution
                 else
                 {
                     FilteringData("countries/",country,"countries/tertiary-roads/","tertiary-roads","p3");
+                }
+            }
+        }
+
+
+
+        public void FilteringCountriesPrimaryByCL(List<string> countriesList)
+        {
+            List<string> exceptions = new List<string>(){
+                "albania",
+                "bosnia-herzegovina",
+                "kosovo",
+                "macedonia",
+                "montenegro",
+            };
+
+            string filter = "p1";
+
+            foreach (var country in countries)
+            {
+                if (countriesList.Contains(country))
+                {
+                    if (exceptions.Contains(country)) {filter = "p2"; }
+                    else if (country == "monaco") {filter = "p1"; }
+                    else {continue; }
+                    FilteringData("countries/", country, "countries/primary-roads/","primary-roads",filter);
+                }
+            }
+        }
+
+
+        public void FilteringCountriesSecondaryByCL(List<string> countriesList)
+        {
+            int i = countriesList.Count;
+            int j = 0;
+
+            foreach (var country in countries)
+            {
+                if (countriesList.Contains(country))
+                {
+                    j++;
+                    colour.WriteLine("y",$"----------[{j}/{i}]----------");
+                    FilteringData("countries/",country,"countries/secondary-roads/","secondary-roads","p2");
+                }
+            }
+        }
+
+
+        public void FilteringCountriesTertiaryByCL(List<string> countriesList)
+        {
+            int i = countriesList.Count;
+            int j = 0;
+
+            foreach (var country in countries)
+            {
+                if (countriesList.Contains(country))
+                {
+                    j++;
+                    colour.WriteLine("b",$"----------[{j}/{i}]----------");
+
+                    if (regions.ContainsKey(country))
+                    {
+                        foreach (var region in regions[country])
+                        {
+                            FilteringData($"regions/{country}/",region,$"regions/{country}/","tertiary-roads","p3");
+                        }
+                    }
+                    else
+                    {
+                        FilteringData("countries/",country,"countries/tertiary-roads/","tertiary-roads","p3");
+                    }
                 }
             }
         }

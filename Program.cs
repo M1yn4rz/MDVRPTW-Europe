@@ -28,20 +28,26 @@ namespace Evolution
             Colour colour = new Colour();
             List<string> points = new List<string>();
             Random random = new Random();
+            
 
             List<string> countriesList = new List<string>() {
-                //"austria",
-                //"belgium",
-                //"czech-republic",
-                //"germany",
-                "hungary",
-                //"luxembourg",
-                //"netherlands",
-                //"poland",
-                //"slovakia",
-                //"switzerland|liechtenstein"
+                //"austria",  // 1,2 GB
+                //"belgium",  // 1 GB
+                //"czech-republic",  // 1,5 GB
+                //"germany",  // 11 GB
+                "hungary",  // 0,5 GB
+                //"luxembourg",  // 100 MB, ale tylko 1 magazyn
+                //"netherlands",  // 1,5 GB
+                //"poland",  // 4,5 GB
+                "slovakia",  // 0,5 GB
+                //"switzerland|liechtenstein"  // 1 GB
             };
+
+            // Odkomentować, w przypadku pobrania potrzebnych map
+            //PreparingData pData = new PreparingData(countriesList);
             
+            // ---------- Przykładowe dane do uruchomienia algorytmu ---------
+
             int numberPopulation = 3000;
             int numberEpochs = 1000;
             int percentLeft = 5;
