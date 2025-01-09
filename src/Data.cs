@@ -352,7 +352,12 @@ namespace Evolution
                     if (country != "russia") {urlPath = "europe/"; }
                     else {urlPath = ""; }
 
-                    await DownloadFile(urlPath, country, "data/osm/pbf/countries/");
+                    var names = country.Split('|');
+
+                    foreach (var name in names)
+                    {
+                        await DownloadFile(urlPath, name, "data/osm/pbf/countries/");
+                    }
                 }
             }
         }
@@ -388,7 +393,12 @@ namespace Evolution
 
                     foreach (var region in regions[country])
                     {
-                        await DownloadFile(urlPath + country + "/", region, "data/osm/pbf/regions/" + country + "/");
+                        var names = region.Split('|');
+
+                        foreach (var name in names)
+                        {
+                            await DownloadFile(urlPath + country + "/", name, "data/osm/pbf/regions/" + country + "/");
+                        }
                     }
                 }
             }
@@ -514,10 +524,15 @@ namespace Evolution
             {
                 if (countriesList.Contains(country))
                 {
-                    if (exceptions.Contains(country)) {filter = "p2"; }
-                    else if (country == "monaco") {filter = "p1"; }
-                    else {continue; }
-                    FilteringData("countries/", country, "countries/primary-roads/","primary-roads",filter);
+                    var names = country.Split('|');
+
+                    foreach (var name in names)
+                    {
+                        if (exceptions.Contains(name)) {filter = "p2"; }
+                        else if (name == "monaco") {filter = "p1"; }
+                        else {continue; }
+                        FilteringData("countries/", name, "countries/primary-roads/","primary-roads",filter);
+                    }
                 }
             }
         }
@@ -534,7 +549,13 @@ namespace Evolution
                 {
                     j++;
                     colour.WriteLine("y",$"----------[{j}/{i}]----------");
-                    FilteringData("countries/",country,"countries/secondary-roads/","secondary-roads","p2");
+
+                    var names = country.Split('|');
+
+                    foreach (var name in names)
+                    {
+                        FilteringData("countries/",name,"countries/secondary-roads/","secondary-roads","p2");
+                    }
                 }
             }
         }
@@ -556,12 +577,22 @@ namespace Evolution
                     {
                         foreach (var region in regions[country])
                         {
-                            FilteringData($"regions/{country}/",region,$"regions/{country}/","tertiary-roads","p3");
+                            var names = region.Split('|');
+
+                            foreach (var name in names)
+                            {
+                                FilteringData($"regions/{country}/",name,$"regions/{country}/","tertiary-roads","p3");
+                            }
                         }
                     }
                     else
                     {
-                        FilteringData("countries/",country,"countries/tertiary-roads/","tertiary-roads","p3");
+                        var names = country.Split('|');
+
+                        foreach (var name in names)
+                        {
+                            FilteringData("countries/",name,"countries/tertiary-roads/","tertiary-roads","p3");
+                        }
                     }
                 }
             }

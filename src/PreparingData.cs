@@ -34,19 +34,24 @@ namespace Evolution
 
             foreach (var country in countriesList)
             {
+                if (country == "switzerland|liechtenstein")
+                {
+                    continue;
+                }
+
                 if (!Directory.Exists($"data/outputs/{country}"))
                 {
                     Directory.CreateDirectory($"data/outputs/{country}");
                 }
 
-                if (data.regions.Keys.Contains(country) && !Directory.Exists($"data/pbf/countries/{country}"))
+                if (data.regions.Keys.Contains(country) && !Directory.Exists($"data/osm/pbf/regions/{country}"))
                 {
-                    Directory.CreateDirectory($"data/pbf/regions/{country}");
+                    Directory.CreateDirectory($"data/osm/pbf/regions/{country}");
                 }
 
-                if (data.regions.Keys.Contains(country) && !Directory.Exists($"data/xml/countries/{country}"))
+                if (data.regions.Keys.Contains(country) && !Directory.Exists($"data/osm/xml/regions/{country}"))
                 {
-                    Directory.CreateDirectory($"data/xml/regions/{country}");
+                    Directory.CreateDirectory($"data/osm/xml/regions/{country}");
                 }
             }
 

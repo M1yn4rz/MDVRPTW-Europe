@@ -29,23 +29,23 @@ namespace Evolution
             List<string> points = new List<string>();
             Random random = new Random();
             PreparingData pData = new PreparingData();
-            
+            CreateTest createTest = new CreateTest();
 
             List<string> countriesList = new List<string>() {
-                //"austria",  // 1,2 GB
-                //"belgium",  // 1 GB
-                //"czech-republic",  // 1,5 GB
-                //"germany",  // 11 GB
+                // "austria",  // 1,2 GB
+                // "belgium",  // 1 GB
+                // "czech-republic",  // 1,5 GB
+                // "germany",  // 11 GB
                 "hungary",  // 0,5 GB
-                //"luxembourg",  // 100 MB, ale tylko 1 magazyn
-                //"netherlands",  // 1,5 GB
-                //"poland",  // 4,5 GB
+                // "luxembourg",  // 100 MB, ale tylko 1 magazyn
+                // "netherlands",  // 1,5 GB
+                // "poland",  // 4,5 GB
                 "slovakia",  // 0,5 GB
-                //"switzerland|liechtenstein"  // 1 GB
+                // "switzerland|liechtenstein"  // 1 GB
             };
 
             // Odkomentować, w przypadku pobrania potrzebnych map
-            //await pData.PD(countriesList);
+            // await pData.PD(countriesList);
             
             // ---------- Przykładowe dane do uruchomienia algorytmu ---------
 
@@ -83,6 +83,9 @@ namespace Evolution
                 new List<double>() {mutationSwapFreq, mutationScrambleFreq, crossoverSwapFreq, crossoverLinearOrderFreq},
                 packagesPerDriver, 
                 showWarehousesMap, showSortOfficesMap, mode, warehousesMaxHours, sortOfficesMaxHours);
+
+            // Szablon funkcji do tworzenia nowych danych testowych
+            // createTest.CreateNewTest("Test", 1000, countriesList);
             
             return;
         }   
